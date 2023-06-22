@@ -14,3 +14,4 @@ WR_DIS_ABS_DONE_0,                         EFUSE_BLK0,   12,     1,    Write pro
 WR_DIS_ABS_DONE_1,                         EFUSE_BLK0,   13,     1,    Write protection for ABS_DONE_1
 WR_DIS_JTAG_DISABLE,                       EFUSE_BLK0,   14,     1,    Write protection for JTAG_DISABLE
 WR_DIS_CONSOLE_DEBUG_AND_DISABLE_DL_CRYPT, EFUSE_BLK0,   15,     1,    Write protection for CONSOLE_DEBUG_DISABLE, DISABLE_DL
+TROOPERS_BADGE_ID,                         EFUSE_BLK2,   0,      16,   A uint16 containing the badge ID

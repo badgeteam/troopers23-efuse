@@ -8,6 +8,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "sdkconfig.h"
+#include "efuse.h"
 
 static const char* TAG = "efuse";
 
@@ -101,5 +102,18 @@ void efuse_print_state() {
     printf("Read disabled for EFUSE block 1:                             %s\n", rd_blk1 ? "yes" : "no");
     printf("Read disabled for EFUSE block 2:                             %s\n", rd_blk2 ? "yes" : "no");
     printf("Read disabled for EFUSE block 3:                             %s\n", rd_blk3 ? "yes" : "no");
+    printf("Troopers badge ID:                                           %d\n", badge_id());
     fflush(stdout);
+}
+
+uint16_t badge_id() {
+    uint8_t bytes[2];
+    esp_efuse_read_field_blob(ESP_EFUSE_TROOPERS_BADGE_ID, bytes, 16);
+    uint16_t id = (bytes[0] << 8) + bytes[1];
+//    for (int i = 0; i < 16; i++) {
+//        printf("%d ", bytes[i]);
+//        id |= bytes[i] << (15-i);
+//    }
+//    printf("\n");
+    return id;
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2017-2021 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2017-2023 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -9,7 +9,7 @@
 #include <assert.h>
 #include "esp_efuse_custom_table.h"
 
-// md5_digest_table 6db56af37887e1bd4dd25861bbc384d1
+// md5_digest_table 8160f64db6a53eae44fd7aade3840604
 // This file was generated from the file esp_efuse_custom_table.csv. DO NOT CHANGE THIS FILE MANUALLY.
 // If you want to change some fields, you need to change esp_efuse_custom_table.csv file
 // then run `efuse_common_table` or `efuse_custom_table` command it will generate this file.
@@ -18,7 +18,9 @@
 #define MAX_BLK_LEN CONFIG_EFUSE_MAX_BLK_LEN
 
 // The last free bit in the block is counted over the entire file.
+#define LAST_FREE_BIT_BLK2 16
 
+_Static_assert(LAST_FREE_BIT_BLK2 <= MAX_BLK_LEN, "The eFuse table does not match the coding scheme. Edit the table and restart the efuse_common_table or efuse_custom_table command to regenerate the new files.");
 
 static const esp_efuse_desc_t WR_DIS_WR_DIS[] = {
     {EFUSE_BLK0, 1, 1}, 	 // Write protection for WR_DIS,
@@ -54,6 +56,10 @@ static const esp_efuse_desc_t WR_DIS_JTAG_DISABLE[] = {
 
 static const esp_efuse_desc_t WR_DIS_CONSOLE_DEBUG_AND_DISABLE_DL_CRYPT[] = {
     {EFUSE_BLK0, 15, 1}, 	 // Write protection for CONSOLE_DEBUG_DISABLE,
+};
+
+static const esp_efuse_desc_t TROOPERS_BADGE_ID[] = {
+    {EFUSE_BLK2, 0, 16}, 	 // A uint16 containing the badge ID,
 };
 
 
@@ -102,5 +108,10 @@ const esp_efuse_desc_t* ESP_EFUSE_WR_DIS_JTAG_DISABLE[] = {
 
 const esp_efuse_desc_t* ESP_EFUSE_WR_DIS_CONSOLE_DEBUG_AND_DISABLE_DL_CRYPT[] = {
     &WR_DIS_CONSOLE_DEBUG_AND_DISABLE_DL_CRYPT[0],    		// Write protection for CONSOLE_DEBUG_DISABLE
+    NULL
+};
+
+const esp_efuse_desc_t* ESP_EFUSE_TROOPERS_BADGE_ID[] = {
+    &TROOPERS_BADGE_ID[0],    		// A uint16 containing the badge ID
     NULL
 };

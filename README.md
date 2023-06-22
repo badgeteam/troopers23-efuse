@@ -1,6 +1,6 @@
 # ESP32 component: eFuse functions
 
-An ESP-IDF component for managing the eFuses of the ESP32 on the MCH2022 badge.
+An ESP-IDF component for managing the eFuses of the ESP32 on the TROOPERS23 badge.
 
 Defines two functions:
 
@@ -10,7 +10,7 @@ Prints an incomplete report on the state of the eFuses to the console.
 
 ## void efuse_protect()
 
-1. Forces 3.3v operation for the SPI flash and PSRAM on the ESP32 module. The MCH2022 badge uses an "ESP32-WROVER-E" module. If your device uses a different module type (like the original non -E version of the "ESP32-WROVER") then you either want to modify this function or stay away from it all together as those modules use 1.8v flash and PSRAM.
+1. Forces 3.3v operation for the SPI flash and PSRAM on the ESP32 module. The TROOPERS23 badge uses an "ESP32-WROVER-E" module. If your device uses a different module type (like the original non -E version of the "ESP32-WROVER") then you either want to modify this function or stay away from it all together as those modules use 1.8v flash and PSRAM.
 2. Write protects all dangerous eFuses
 
 ## eFuse summary after running the efuse protect function
