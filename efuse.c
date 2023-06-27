@@ -102,7 +102,7 @@ void efuse_print_state() {
     printf("Read disabled for EFUSE block 1:                             %s\n", rd_blk1 ? "yes" : "no");
     printf("Read disabled for EFUSE block 2:                             %s\n", rd_blk2 ? "yes" : "no");
     printf("Read disabled for EFUSE block 3:                             %s\n", rd_blk3 ? "yes" : "no");
-    printf("Troopers badge ID:                                           %d\n", badge_id());
+    printf("TROOPERS badge ID:                                           %d\n", badge_id());
     fflush(stdout);
 }
 
